@@ -1,11 +1,11 @@
-
+import Header from "./Header";
 
 const App = () => {
   return (
-    <>
-      <div>Ganesh</div>
-    </>
+    <div className="layout font-helvetica">
+      <Header />
+    </div>
   );
-}
+};
 
 export default App;
