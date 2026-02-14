@@ -8,7 +8,9 @@ const Header = () => {
 
   return (
     <header className="mt-4 flex items-center justify-center">
-      <div className="hover:shadow-nav group group container mx-auto h-full max-w-316 rounded-md transition-shadow duration-300 hover:bg-white">
+      <div
+        className={`hover:shadow-nav group group container mx-auto h-full max-w-316 transition-all duration-300 hover:bg-white ${activeLink ? "rounded-b-0 rounded-t-lg" : "rounded-lg"}`}
+      >
         <div className="nav-container mx-auto flex h-full max-w-270 items-center justify-between px-4 py-3">
           <div className="left flex items-center gap-5">
             <div className="logo transition-brightness w-20 duration-300 group-hover:brightness-0">
@@ -24,11 +26,9 @@ const Header = () => {
                     onMouseEnter={() => setActiveLink(item)}
                     onMouseLeave={() => setActiveLink(null)}
                     className={`text-body flex cursor-pointer items-center gap-px p-3 leading-none font-normal transition-colors duration-200 ${
-                      isActive
-                        ? "text-[#0A2540]"
-                        : activeLink
-                          ? "text-[#8898AA]"
-                          : "text-[#0A2540]"
+                      !isActive && activeLink
+                        ? "text-[#8898AA]"
+                        : "text-[#0A2540]"
                     } `}
                   >
                     {item}
@@ -44,7 +44,7 @@ const Header = () => {
             <button className="text-body text-heading cursor-pointer">
               Sign In
             </button>
-            <button className="text-body bg-primary p-button flex cursor-pointer items-center justify-center gap-px rounded-full leading-1 text-white group-hover:bg-black hover:bg-neutral-800 transition-bg duration-200">
+            <button className="text-body bg-primary p-button transition-bg flex cursor-pointer items-center justify-center gap-px rounded-full leading-1 text-white duration-200 group-hover:bg-black hover:bg-neutral-700">
               <span>Contact Sales</span>
               <RiArrowRightSLine size={18} />
             </button>
