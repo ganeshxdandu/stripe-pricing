@@ -4,12 +4,13 @@ import { useState } from "react";
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
+  const [showDropDown, setShowDropDown] = useState(false);
   const LINKS = ["Products", "Solutions", "Developers", "Resources", "Pricing"];
 
   return (
     <header className="mt-4 flex items-center justify-center">
       <div
-        className={`hover:shadow-nav group group container mx-auto h-full max-w-316 transition-all duration-300 hover:bg-white ${activeLink ? "rounded-b-0 rounded-t-lg" : "rounded-lg"}`}
+        className={`hover:shadow-nav group group container mx-auto h-full max-w-316 rounded-lg transition-all duration-300 hover:bg-white`}
       >
         <div className="nav-container mx-auto flex h-full max-w-270 items-center justify-between px-4 py-3">
           <div className="left flex items-center gap-5">
@@ -32,9 +33,11 @@ const Header = () => {
                     } `}
                   >
                     {item}
-                    <span>
-                      <RiArrowDropDownLine size={16} />
-                    </span>
+                    {item !== "Pricing" && (
+                      <span>
+                        <RiArrowDropDownLine size={16} />
+                      </span>
+                    )}
                   </button>
                 );
               })}
@@ -49,6 +52,17 @@ const Header = () => {
               <RiArrowRightSLine size={18} />
             </button>
           </div>
+        </div>
+        <div
+          onMouseEnter={() => {
+            setShowDropDown(true);
+          }}
+          onMouseLeave={() => {
+            setShowDropDown(false);
+          }}
+          className={`drop-down w-full overflow-hidden rounded-b-lg bg-white ${(activeLink && activeLink !== "Pricing") || showDropDown ? "h-100 border-t border-neutral-200 opacity-100" : "h-0 border-0 border-neutral-200 opacity-0"} transition-all duration-500`}
+        >
+          Ganesh
         </div>
       </div>
     </header>
